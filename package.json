@@ -1,7 +1,7 @@
 {
-  "name": "webhook-echo-sample",
+  "name": "vishwaskaipuchatbot",
   "version": "1.0.0",
-  "description": "Webhook echo sample",
+  "description": "chatbot sample",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

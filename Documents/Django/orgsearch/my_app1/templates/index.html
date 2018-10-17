@@ -1,0 +1,11 @@
+{% if obj %}
+{% for k in obj %}
+{{ k.parent_name }} <br>
+{{ k.parent_domain }} <br>
+<hr>
+{{ k.child_name }} <br>
+{{ k.child_EA_Number }} <br>
+{{ k.child_domain }} <br>
+<hr>
+{%  endfor %}
+{%  endif %}

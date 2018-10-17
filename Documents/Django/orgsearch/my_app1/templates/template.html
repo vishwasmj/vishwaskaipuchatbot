@@ -1,0 +1,12 @@
+<ul>
+{% for person in people %}
+    <li>
+        {{ person.name }}
+        <ul>
+        {% for child in person.children.all %}
+            <li>{{ child.name }}</li>
+        {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+</ul>

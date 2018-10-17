@@ -1,0 +1,145 @@
+{% load staticfiles %}
+
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+   <!--<link rel = "stylesheet" type="text/css" href ="/static/css/bootstrap.min.css">-->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/parent_child.css' %}" />
+<style>
+h2 {
+    color: grey;
+    text-shadow: 3px 2px white;
+}
+</style>
+
+
+</head>
+<body>
+<div class="container">
+    <div id="wrapperHeader">
+ <div id="header">
+  <img src="/static/css/vm5.jpg" alt="logo" align="centre" />
+ </div>
+</div>
+    <h2 align="center"> Conglomeration Search </h2>
+    <form method="post" action = "/search/">
+        {% csrf_token %}
+        <div class="form-group" align="centre">
+            <div class="col-lg-5">
+                <input type = "text" name ="srh" class= "form-control" placeholder="Enter child name or EA Number">
+            </div>
+            <label class="col-lg-2">
+                <button type="submit" class = "btn btn-danger">Search</button>
+            </label>
+        </div>
+    </form><br><br>
+
+    <div>
+        {% if messages %}
+<ul class="messages">
+    {% for k in messages %}
+    <li style="color:red">{{ k }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+    </div><br>
+    <div style="color :blue">
+        {% if sr %}
+            <!--<ul>-->
+                <!--<li>Parent Name</li>-->
+                <!--<li>{{ sr.parent_name}}</li>-->
+                <!--<li>Parent Domain</li>-->
+                <!--<li>{{ sr.parent_domain}}</li>-->
+            <!--</ul>-->
+        {% for k in sr %}
+        <table border="0px" width="300px">
+            {% if forloop.first %}
+                <ul>
+                <li>Parent Name :  {{ k.parent_name}}</li>
+                <li>Parent Domain : {{ k.parent_domain}} </li>
+                    <br> </br>
+
+            </ul>
+            {% endif %}
+            <!--<ul>-->
+                <!--<li>Parent Name</li>-->
+                <!--<li>{{ k.parent_name}}</li>-->
+            <!--</ul>-->
+            <!--<tr>-->
+                <!--<td>Parent Domain</td>-->
+                <!--<td>{{ k.parent_domain}}</td>-->
+            <!--</tr>-->
+            <tr>
+                <td>Child Name</td>
+                <td>{{ k.child_name}}</td>
+            </tr>
+            <tr>
+                <td>Child EA Number</td>
+                <td>{{ k.child_EA_Number}}</td>
+            </tr>
+            <tr>
+                <td>Child Domain</td>
+                <td>{{ k.child_domain}}</td>
+            </tr>
+        </table>
+        <hr>
+            {% endfor %}
+        <div class="pagination">
+    <span class="step-links">
+        {% if child.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ child.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ child.number }} of {{ child.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ child.next_page_number }}">next</a>
+            <a href="?page={{ child.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+        {% endif %}
+    </div>
+</div>
+</div>
+<div class="tree">
+    {% if sr %}
+    <ul>
+        {% for record in sr%}
+            {%if forloop.first%}
+                <li >
+                    <a href="#">Parent : {{record.parent_name}}
+                        <br>        Domain : {{record.parent_domain}} </a>
+                        <!--<a href="#">Domain : {{record.parent_domain}} </a>-->
+            {%endif%}
+                    {% endfor %}
+                    <ul >
+                        {% for record in sr%}
+                        <li>
+                            <a href="#"> Name :{{record.child_name}}
+                            <br>         Domain :{{record.child_domain}}
+                            <br>         EA_number :{{record.child_EA_Number}}
+                            </a>
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+
+
+    {% endif %}
+                       </li>
+    </ul>
+
+</div>
+
+
+</body>
+</html>

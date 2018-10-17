@@ -1,0 +1,14 @@
+<html>
+<head>
+    <body>
+<h1> Parent Child Form</h1>
+<form method = "post" action = "">
+    {% csrf_token %}
+    <div>
+        {{ form.as_p }}
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</head>
+</html>

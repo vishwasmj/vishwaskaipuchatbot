@@ -2,7 +2,6 @@
 
 <!--<!DOCTYPE html>-->
 <html lang="en">
-
 <head>
    <!--<link rel = "stylesheet" type="text/css" href ="/static/css/bootstrap.min.css">-->
 
@@ -10,12 +9,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/parent_child.css' %}" />
-
 <style>
-html {
-        /* Size of largest container or bigger */
-        min-width: 1080px;
-    }
 h2 {
     color: black;
     text-shadow: 3px 2px white;
@@ -25,7 +19,6 @@ h2 {
 
 
 </head>
-
 <body>
 <div class="container">
     <div id="wrapperHeader">
@@ -33,12 +26,12 @@ h2 {
   <!--<img src="/static/css/vm5.jpg" alt="logo" align="centre" />-->
  </div>
 </div>
-    <h2 align="center"> Company Search </h2>
-    <form method="get" action = "/search/" >
+    <h2 align="center"> Conglomeration Search </h2>
+    <form method="post" action = "/search/">
         {% csrf_token %}
-        <div class="form-group">
+        <div class="form-group" align="centre">
             <div class="col-lg-4 col-lg-offset-4">
-                <input type = "text" name ="srh" class= "form-control" placeholder="Enter Company Name or EA Number">
+                <input type = "text" name ="srh" class= "form-control" placeholder="Enter child name or EA Number">
             </div>
             <label class="col-lg-2">
                 <button type="submit" class = "btn btn-danger">Search</button>
@@ -55,67 +48,50 @@ h2 {
     </ul>
 {% endif %}
     </div><br>
-    <div style="color :blue">
-        {% if sr %}
-            <!--<ul>-->
-                <!--<li>Parent Name</li>-->
-                <!--<li>{{ sr.parent_name}}</li>-->
-                <!--<li>Parent Domain</li>-->
-                <!--<li>{{ sr.parent_domain}}</li>-->
-            <!--</ul>-->
-        {% for k in sr %}
-        <table border="0px" width="300px">
-            {% if forloop.first %}
-                <ul>
-                <li>Parent Name :  {{ k.parent_name}}</li>
-                <li>Parent Domain : {{ k.parent_domain}} </li>
-                    <br> </br>
+    <!--<div style="color :blue">-->
+        <!--{% if sr %}-->
+            <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>Parent Name</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>{{ sr.parent_name}}</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>Parent Domain</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>{{ sr.parent_domain}}</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--{% for k in sr %}-->
+        <!--<table border="0px" width="300px">-->
+            <!--{% if forloop.first %}-->
+                <!--<ul>-->
+                <!--<li>Parent Name :  {{ k.parent_name}}</li>-->
+                <!--<li>Parent Domain : {{ k.parent_domain}} </li>-->
+                    <!--<br> </br>-->
 
-            </ul>
-            {% endif %}
-            <!--<ul>-->
-                <!--<li>Parent Name</li>-->
-                <!--<li>{{ k.parent_name}}</li>-->
             <!--</ul>-->
+            <!--{% endif %}-->
+            <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>Parent Name</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li>{{ k.parent_name}}</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                <!--&lt;!&ndash;<td>Parent Domain</td>&ndash;&gt;-->
+                <!--&lt;!&ndash;<td>{{ k.parent_domain}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
             <!--<tr>-->
-                <!--<td>Parent Domain</td>-->
-                <!--<td>{{ k.parent_domain}}</td>-->
+                <!--<td>Child Name</td>-->
+                <!--<td>{{ k.child_name}}</td>-->
             <!--</tr>-->
-            <tr>
-                <td>Child Name</td>
-                <td>{{ k.child_name}}</td>
-            </tr>
-            <tr>
-                <td>Child EA Number</td>
-                <td>{{ k.child_EA_Number}}</td>
-            </tr>
-            <tr>
-                <td>Child Domain</td>
-                <td>{{ k.child_domain}}</td>
-            </tr>
-        </table>
-        <hr>
-            {% endfor %}
-        <div class="pagination">
-    <span class="step-links">
-        {% if sr.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ sr.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ sr.number }} of {{ sr.paginator.num_pages }}.
-        </span>
-
-        {% if sr.has_next %}
-            <a href="?page={{ sr.next_page_number }}">next</a>
-            <a href="?page={{ sr.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-        {% endif %}
-    </div>
-</div>
+            <!--<tr>-->
+                <!--<td>Child EA Number</td>-->
+                <!--<td>{{ k.child_EA_Number}}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Child Domain</td>-->
+                <!--<td>{{ k.child_domain}}</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+        <!--<hr>-->
+            <!--{% endfor %}-->
+        <!--{% endif %}-->
+    <!--</div>-->
+<!--</div>-->
 </div>
 <div class="tree">
     {% if sr %}
